@@ -1,0 +1,17 @@
+{
+  "name": "test_app",
+  "version": "1.0.0",
+  "description": "testing mongo and express first time",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "mongodb": "*",
+    "mongoose": "^4.10.8"
+  },
+  "author": "",
+  "license": "ISC"
+}
