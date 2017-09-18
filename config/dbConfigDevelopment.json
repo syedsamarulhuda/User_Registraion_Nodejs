@@ -1,0 +1,9 @@
+ {
+ 	"MongoDatabaseSettings": {
+    "host": "mongodb://localhost:",
+    "port":"27017",
+    "database": "test_app",
+    "username": "",
+    "password": ""
+  }
+}

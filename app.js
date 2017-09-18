@@ -1,116 +1,36 @@
 
 
+process.env.NODE_ENV = 'dbConfigDevelopment';
+
 var express= require('express');
 var app=express();
+
+config = require('config');
+constant = require('./routes/constant');
+var user = require('./routes/user');
 var bodyParser=require('body-parser');
-var mongoose= require('mongoose');
-
-
 app.use(bodyParser.json());
+app.set('json spaces', 1);
 
-UserDetails=require('./models/user_details');
-
-//connect to mongo
-
-mongoose.connect('mongodb://localhost:27017/test_app');
-var db= mongoose.connection;
-
-app.get('/',function(req,res){
-
-res.send('Testing Node js Skill');
-
-});
 
 
 //get all user details
 
-app.get('/api/user_detail',function(req,res){
-
-    UserDetails.getUsersDetail(function(err,userDetails)
-    {
-    	if(err)
-    	{
-    		throw err;
-    	}
-
-    	res.json(userDetails);
-    })
-
-
-});
+app.get('/api/user_detail',user);
 
 // get user detail by id
 
-app.get('/api/user_detail/:_id',function(req,res){
-
-    UserDetails.getUserDetailById(req.params._id,function(err,userDetail)
-    {
-    	if(err)
-    	{
-    		throw err;
-    	}
-
-    	res.json(userDetail);
-    })
-
-
-});
+app.get('/api/user_detail/:_id',user);
 
 // create user
-app.post('/api/user_detail',function(req,res){
+app.post('/api/user_detail',user);
 
-	var user_detail= req.body;
-
-    UserDetails.addUserDetail(user_detail,function(err,user_detail)
-    {
-    	if(err)
-    	{
-    		throw err;
-    	}
-
-    	res.json(user_detail);
-    })
-
-
-});
 
 // update user
-app.put('/api/user_detail/:_id',function(req,res){
-
-	var id = req.params._id;
-
-	var user_detail= req.body;
-
-    UserDetails.updateUserDetail(id,user_detail,{},function(err,user_detail)
-    {
-    	if(err)
-    	{
-    		throw err;
-    	}
-
-    	res.json(user_detail);
-    })
-
-
-});
+app.put('/api/user_detail/:_id',user);
 
 // delete user
-app.delete('/api/user_detail/:_id',function(req,res){
-
-	var id = req.params._id;
-
-    UserDetails.deleteUserDetail(id,function(err,user_detail)
-    {
-    	if(err)
-    	{
-    		throw err;
-    	}
-
-    	res.json(user_detail);
-    })
-
-
-});
+app.delete('/api/user_detail/:_id',user);
 
 
 app.listen(8080);

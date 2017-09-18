@@ -10,6 +10,7 @@
     "body-parser": "*",
     "express": "*",
     "mongodb": "*",
+    "config": "^1.16.0",
     "mongoose": "^4.10.8"
   },
   "author": "",
